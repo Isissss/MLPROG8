@@ -106,7 +106,7 @@ function announceResult(text, correct) {
 }
 
 function speak(text) {
-    if (synth.speaking) {
+    if (synth.pending) {
         synth.cancel()
         setTimeout(function () {
             synth.speak(text)
