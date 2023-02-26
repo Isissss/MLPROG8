@@ -16,7 +16,7 @@ img.addEventListener('load', () => userImageUploaded())
 
 
 
-const classifier = featureExtractor.classification(img)
+const classifier = featureExtractor.classification(img, { numLabels: 3 })
 
 startButton.addEventListener("click", () => {
     shuffleArray(objectives)
