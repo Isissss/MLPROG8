@@ -3,7 +3,7 @@ const objectiveDiv = document.getElementById("objective")
 const objectives = ["Fork", "Pen", "Toiletpaper"]
 let synth = window.speechSynthesis
 let itemsLeft = objectives.length
-let objective 
+let objective
 let time = 0
 let timer
 const scoreDiv = document.getElementById("score")
@@ -23,7 +23,7 @@ startButton.addEventListener("click", () => {
     startGame()
 });
 
-function userImageUploaded(){
+function userImageUploaded() {
     classify()
 }
 
@@ -32,23 +32,23 @@ input.addEventListener("change", (event) => {
     img.src = URL.createObjectURL(event.target.files[0])
 })
 
-function startGame() {
+function startGame() {  
+    announceNewObjective()
+    speak(`Objective: Take a picture of a ${objective}`)
     startButton.remove()
     document.getElementById("info").remove()
     document.getElementById("time").style.display = "block"
     input.style.display = "inline-block"
     inputLabel.style.display = "inline-block"
-    document.getElementById("time").style.display = "block"
     scoreDiv.innerHTML = `Items left: ${itemsLeft}`
 
-    announceNewObjective()
     startTimer()
 }
 
 function startTimer() {
     timer = setInterval(function () {
         time++
-        document.getElementById("time").innerHTML = `Time: ${time}`
+        document.getElementById("time").innerHTML = `Time: ${time} seconds`
 
     }, 1000)
 }
@@ -67,22 +67,26 @@ function classify() {
         if (err) console.log(err)
 
         if (result[0].label == objective && result[0].confidence > 0.9) {
-            announceResult(`Correct! I am  ${Math.round(result[0].confidence * 100)}% positive that that is a ${result[0].label}. `, true)
+            
+            announceResult(`Correct! I am  ${Math.round(result[0].confidence * 100)}% positive that that is a ${result[0].label}. `, true)          
             itemsLeft--
             scoreDiv.innerHTML = `Items left: ${itemsLeft}`
+            
+            if (itemsLeft == 0) {
+                clearInterval(timer)
+                input.disabled = true
+                objectiveDiv.innerHTML = `You won! You completed the game in ${time} seconds. Refresh the page to play again.`
+                setTimeout(function () {
+                speak(`You won!, you completed the game in ${time} seconds Refresh the page to play again.`) 
+                }, 4000);
+                return
+            }
+            announceNewObjective()
+
             fileLabel.style.display = "inline-block"
             input.style.display = "inline-block"
             input.value = null
 
-            if (itemsLeft == 0) {
-                clearInterval(timer)
-                input.disabled = true
-
-                objectiveDiv.innerHTML = `You won! You completed the game in ${time} seconds. Refresh the page to play again.`
-                speak(`You won!, you completed the game in ${time} seconds Refresh the page to play again.`)
-                return
-            }
-            announceNewObjective()
         }
         else {
             announceResult(`That is not a ${objective}. Try again.`, false)
@@ -94,9 +98,8 @@ function classify() {
 
 function announceNewObjective() {
     objective = objectives[itemsLeft - 1]
-
     objectiveDiv.innerHTML = `Objective: Take a picture of a ${objective}`
-    speak(`Objective: Take a picture of a ${objective}`)
+
 }
 
 function announceResult(text, correct) {
@@ -106,7 +109,7 @@ function announceResult(text, correct) {
 }
 
 function speak(text) {
-    if (synth.pending) {
+    if (synth.speaking) {
         synth.cancel()
         setTimeout(function () {
             synth.speak(text)
@@ -118,6 +121,7 @@ function speak(text) {
         utterThis.lang = "en-US"
         synth.speak(utterThis)
     }
+
 }
 
 function loadCustomModel() {
