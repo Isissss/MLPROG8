@@ -32,9 +32,8 @@ input.addEventListener("change", (event) => {
     img.src = URL.createObjectURL(event.target.files[0])
 })
 
-function startGame() {  
+function startGame() {
     announceNewObjective()
-    speak(`Objective: Take a picture of a ${objective}`)
     startButton.remove()
     document.getElementById("info").remove()
     document.getElementById("time").style.display = "block"
@@ -67,18 +66,17 @@ function classify() {
         if (err) console.log(err)
 
         if (result[0].label == objective && result[0].confidence > 0.9) {
-            
-            announceResult(`Correct! I am  ${Math.round(result[0].confidence * 100)}% positive that that is a ${result[0].label}. `, true)          
+
+            announceResult(`Correct! I am  ${Math.round(result[0].confidence * 100)}% positive that that is a ${result[0].label}. `, true)
             itemsLeft--
             scoreDiv.innerHTML = `Items left: ${itemsLeft}`
-            
+
             if (itemsLeft == 0) {
                 clearInterval(timer)
                 input.disabled = true
                 objectiveDiv.innerHTML = `You won! You completed the game in ${time} seconds. Refresh the page to play again.`
-                setTimeout(function () {
-                speak(`You won!, you completed the game in ${time} seconds Refresh the page to play again.`) 
-                }, 4000);
+                speak(`You won!, you completed the game in ${time} seconds Refresh the page to play again.`)
+
                 return
             }
             announceNewObjective()
@@ -97,15 +95,21 @@ function classify() {
 }
 
 function announceNewObjective() {
+    let string
     objective = objectives[itemsLeft - 1]
-    objectiveDiv.innerHTML = `Objective: Take a picture of a ${objective}`
-
+    string = (itemsLeft == objectives.length) ? "Objective" : `Correct! New objective`
+    objectiveDiv.innerHTML = `${string}: Take a picture of a ${objective}`
+    speak(`${string}: Take a picture of a ${objective}`)
 }
 
 function announceResult(text, correct) {
     resultDiv.style.color = correct ? "green" : "red"
     resultDiv.innerHTML = text
-    speak(text)
+
+    if (!correct) {
+        speak (text)
+    }
+
 }
 
 function speak(text) {
