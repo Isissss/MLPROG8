@@ -1,0 +1,205 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- Load three.js -->
+    <script defer src="https://unpkg.com/@tensorflow/tfjs-core@2.1.0/dist/tf-core.js"></script>
+    <script defer src="https://unpkg.com/@tensorflow/tfjs-converter@2.1.0/dist/tf-converter.js"></script>
+
+    <!-- GPU backend -->
+    <script defer src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.1.0/dist/tf-backend-webgl.js"></script>
+    <!-- CPU backend -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-cpu"></script> -->
+    <!-- WASM backend -->
+    <!-- <script src="https://unpkg.com/@tensorflow/tfjs-backend-wasm@2.1.0/dist/tf-backend-wasm.js"></script> -->
+
+    <script defer src="https://unpkg.com/@tensorflow-models/handpose@0.0.6/dist/handpose.js"></script>
+    <script defer src="./src/js/knear.js"></script>
+    <script defer src="./src/index.js"></script>
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: row;justify-content: space-between; ">
+        <div>
+            <h1 style="padding:0; color:rgb(253, 0, 126); margin: 15px;"> ROCK PAPER SCISSORS</h1>
+        </div>
+        <div style="display: flex;
+        background: white;
+        color: hsl(229, 64%, 46%);
+        margin: auto;
+        border-radius: 10px;
+        align-items:center;
+        letter-spacing: 2px;
+        padding: 7px;
+        margin-left: 20px;
+        font-weight: bold;
+        justify-content:center;">SCORE: <span id="score" style="margin-left:3px">0</span></div>
+    </div>
+    <div id="container">
+        <canvas id="output"></canvas>
+        <video id="video" playsinline></video>
+    </div>
+    <div style="position: absolute; top:0; left:0; width:250px">
+  
+        <input type="test" id="poseInput" placeholder="Name of pose...">
+        <button id="poseButton">Add pose</button>
+        <button id="classifyButton">Classify</button>
+        <button id="saveTrainingButton">Save training</button>
+        <button id="deleteTrainingButton">Delete training</button>
+    </div>
+
+    <button id="start">start</button>
+    <div id="test" style="display: none; justify-content: center; flex-direction: column; align-items: center;">
+        <div style="display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 75px;
+    grid-row-gap: 15px;
+     ">
+            <div>
+                <div
+                    style="font-size: 1.5em; margin-bottom: 1rem; margin-top: 5px; letter-spacing: 5px; text-align: center;">
+                    YOUR PICK: </div>
+                <div style="display:flex; flex-direction: row; column-gap: 20px; ">
+
+                    <div class="player item steen" style="
+                border-radius: 25%;
+                padding:15px;
+                background: gray ;
+                box-shadow: none ;
+                border-bottom: 6px solid rgb(77, 77, 77);
+            transition: box-shadow 0.2s, background 0.2s, border-bottom 0.2s;
+            ">
+                        <div style="display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                height: 50px;
+                width: 50px;
+                background-color: white;
+                padding: 15px;
+                box-shadow: inset 0 5px 0 1px #c7c7c7b5;">
+                            <img id="steenImg" src="./src/img/icon-rock.svg" alt="steen">
+                        </div>
+                    </div>
+
+                    <!-- Papier -->
+                    <div class="player item papier" style="
+                    border-radius: 25%;
+                    padding:15px;
+                    background: gray ;
+                    box-shadow: none ;
+                    border-bottom: 6px solid rgb(77, 77, 77);
+                transition: box-shadow 0.2s, background 0.2s, border-bottom 0.2s;
+                ">
+                        <div style="display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    height: 50px;
+                    width: 50px;
+                    background-color: white;
+                    padding: 15px;
+                    box-shadow: inset 0 5px 0 1px #c7c7c7b5;">
+                            <img id="paperImage" src="./src/img/icon-paper.svg" alt="papier">
+                        </div>
+                    </div>
+
+                    <!-- Schaar  -->
+                    <div class="player item schaar" style="
+                        border-radius: 25%;
+                        padding:15px;
+                        background: gray ;
+                        box-shadow: none ;
+                        border-bottom: 6px solid rgb(77, 77, 77);
+                    transition: box-shadow 0.2s, background 0.2s, border-bottom 0.2s;
+                    ">
+                        <div style="display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        height: 50px;
+                        width: 50px;
+                        background-color: white;
+                        padding: 15px;
+                        box-shadow: inset 0 5px 0 1px #c7c7c7b5;">
+                            <img id="schaarImg" src="./src/img/icon-scissors.svg" alt="schaar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div
+                    style="font-size: 1.5em; margin-bottom: 1rem; margin-top: 5px; letter-spacing: 5px; text-align: center;">
+                    COMPUTER PICK: </div>
+                <div style="display:flex; flex-direction: row; column-gap: 20px; ">
+                    <div class="computer item steen" style="
+                border-radius: 25%;
+                padding:15px;
+                background: gray ;
+                box-shadow: none ;
+                border-bottom: 6px solid rgb(77, 77, 77);
+            transition: box-shadow 0.2s, background 0.2s, border-bottom 0.2s;
+            ">
+                        <div style="display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                height: 50px;
+                width: 50px;
+                background-color: white;
+                padding: 15px;
+                box-shadow: inset 0 5px 0 1px #c7c7c7b5;">
+                            <img id="steenImg" src="./src/img/icon-rock.svg" alt="steen">
+                        </div>
+                    </div>
+
+                    <!-- Papier -->
+                    <div class="computer item papier" style="
+                    border-radius: 25%;
+                    padding:15px;
+                    background: gray ;
+                    box-shadow: none ;
+                    border-bottom: 6px solid rgb(77, 77, 77);
+                transition: box-shadow 0.2s, background 0.2s, border-bottom 0.2s;
+                ">
+                        <div style="display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    height: 50px;
+                    width: 50px;
+                    background-color: white;
+                    padding: 15px;
+                    box-shadow: inset 0 5px 0 1px #c7c7c7b5;">
+                            <img id="paperImage" src="./src/img/icon-paper.svg" alt="papier">
+                        </div>
+                    </div>
+
+                    <!-- Schaar  -->
+                    <div class="computer item schaar" style="
+                        border-radius: 25%;
+                        padding:15px;
+                        background: gray ;
+                        box-shadow: none ;
+                        border-bottom: 6px solid rgb(77, 77, 77);
+                    transition: box-shadow 0.2s, background 0.2s, border-bottom 0.2s;
+                    ">
+                        <div style="display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        height: 50px;
+                        width: 50px;
+                        background-color: white;
+                        padding: 15px;
+                        box-shadow: inset 0 5px 0 1px #c7c7c7b5;">
+                            <img id="schaarImg" src="./src/img/icon-scissors.svg" alt="schaar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="color:rgb(255, 0, 128); font-size:1.5em; font-weight: bold; margin-top: 25px; text-align: center;" id="results">adw</div>
+    </div>
+</body>
