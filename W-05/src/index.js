@@ -5,16 +5,20 @@ const data = await fetch("src/data.json").then(res => res.json())
 const poseInput = document.querySelector("#poseInput")
 const addPoseButton = document.querySelector("#poseButton")
 const classifyButton = document.querySelector("#classifyButton")
-const saveTrainingButton = document.querySelector("#saveTrainingButton")
-saveTrainingButton.addEventListener("click", () => saveTraining())
 const clearTrainingButton = document.querySelector("#deleteTrainingButton")
-clearTrainingButton.addEventListener("click", () => clearTraining())
+const saveTrainingButton = document.querySelector("#saveTrainingButton")
 
+saveTrainingButton.addEventListener("click", () => saveTraining())
+document.getElementById("start").addEventListener("click", startGame)
+clearTrainingButton.addEventListener("click", () => clearTraining())
+addPoseButton.addEventListener("click", () => savePose(video))
+classifyButton.addEventListener("click", () => classify(video))
  
 const VIDEO_WIDTH = 720
 const VIDEO_HEIGHT = 405
 let video
 let results
+let getPick
 let oldResults
 const k = 3
 const KNN = new kNear(k, data)
@@ -22,10 +26,6 @@ const KNN = new kNear(k, data)
 //
 // start de applicatie
 //
-
-addPoseButton.addEventListener("click", () => savePose(video))
-
-classifyButton.addEventListener("click", () => classify(video))
 async function main() {
     model = await handpose.load()
     video = await setupCamera()
@@ -60,30 +60,35 @@ async function setupCamera() {
         }
     })
 }
-async function savePose(video) {
+async function predict(video) {
 
     const predictions = await model.estimateHands(video) // ,true voor flip
-    const boundingBox = predictions[0].boundingBox
+  
     if (predictions.length > 0) {
+        const boundingBox = predictions[0].boundingBox
         const keypoints = predictions[0].landmarks
-        keypoints.reduce((acc, curr) => {
-            console.log(acc)
+        const newPoints = keypoints.reduce((acc, curr) => {
             acc.push((curr[0] - boundingBox.topLeft[0] / boundingBox.bottomRight[0] - boundingBox.topLeft[0]), (curr[1] - boundingBox.topLeft[1] / boundingBox.bottomRight[1] - boundingBox.topLeft[1]))
-
             return acc
-         
+
         }, [])
+  
+        return newPoints.flat()
 
-
-        KNN.learn(keypoints.flat(), poseInput.value)
-
-        // knn.learn(flatPoints, poseInput.value)
-        console.log(`trained ${poseInput.value}`)
     } else {
         console.log("no hand detected")
+        return false 
     }
+}
 
+function savePose(video) {
+    predict(video).then((keypoints) => {
+ 
+    if (!keypoints) return 
 
+    KNN.learn(keypoints, poseInput.value)
+    console.log(`trained ${poseInput.value}`)
+    })
 }
 //
 // predict de vinger posities in de video stream
@@ -113,21 +118,18 @@ async function startLandmarkDetection(video) {
     predictLandmarks()
    
 }
-document.getElementById("start").addEventListener("click", startGame)
- 
-let getIt
+
+
 function startGame() {
     document.getElementById("start").disabled = true
     document.getElementById("test").style.display = "flex"
     document.getElementById("results").innerHTML = "Pick scissors, rock or paper and hold the pose in front of the camera."
     document.querySelectorAll(".item").forEach(item => item.classList.remove("active"))
-    getIt = setInterval(()=>getThing(), 2000)
+    getPick = setInterval(()=>getThing(), 2000)
 }
-
- 
  
 function stopGame() {
-    clearInterval(getIt)
+    clearInterval(getPick)
     results = ""
     oldResults = ""
     document.getElementById("start").innerText = "Restart"
@@ -135,25 +137,14 @@ function stopGame() {
 }
 
 async function classify(video, test) {
- 
-    const predictions = await model.estimateHands(video) // ,true voor flip
+        const points = await predict(video)
 
-    if (predictions.length > 0) {
-        const keypoints = predictions[0].landmarks
-        keypoints.reduce((acc, curr) => {
-            acc.push(curr[0], curr[1])
+        if (!points) return 
 
-            return acc
-
-        }, [])
-
-        const results = KNN.classify(keypoints.flat())
+        const results = KNN.classify(points)
         console.log(`results: ${results}`)
         return results
-    } else {
-        return ""
-     
-    }
+   
 }
 
 //
@@ -164,11 +155,7 @@ async function predictLandmarks() {
    
     ctx.drawImage(video, 0, 0, videoWidth, videoHeight, 0, 0, canvas.width, canvas.height)
     // prediction!
-    const predictions = await model.estimateHands(video) // ,true voor flip
-    // if (predictions.length > 0) {
-        // drawHand(ctx, predictions[0].landmarks, predictions[0].annotations)
-
-    // }
+    // predict functie
     // 60 keer per seconde is veel, gebruik setTimeout om minder vaak te predicten
     requestAnimationFrame(predictLandmarks)
     // setTimeout(()=>predictLandmarks(), 1000)
@@ -182,24 +169,24 @@ async function getThing () {
     }
     results = await classify(video, oldResults) 
     if (results !== oldResults) {
-        document.querySelector("#results").innerText = `Thinking...`
+        document.querySelector("#results").innerText = `Identifying pose, hold on...`
     } else if (oldResults === results && results == "steen" || results == "papier" || results == "schaar") {
         let computerChoice
         if (results == "steen") {
             computerChoice = "papier"
-            document.querySelector('.computer.papier').classList.toggle('active')
-            document.querySelector('.player.steen').classList.toggle('active')
+            document.querySelector('.computer.papier').classList.add('active')
+            document.querySelector('.player.steen').classList.add('active')
         } else if (results == "papier") {
             computerChoice = "schaar"
-             document.querySelector('.computer.schaar').classList.toggle('active')
-             document.querySelector('.player.papier').classList.toggle('active')
+             document.querySelector('.computer.schaar').classList.add('active')
+             document.querySelector('.player.papier').classList.add('active')
         } else if (results == "schaar") {
             computerChoice = "steen"
-            document.querySelector('.player.schaar').classList.toggle('active')
-            document.querySelector('.computer.steen').classList.toggle('active')
+            document.querySelector('.player.schaar').classList.add('active')
+            document.querySelector('.computer.steen').classList.add('active')
         }
         score--
-       document.getElementById("score").innerHTML = " " + score
+        document.getElementById("score").innerHTML = " " + score
         document.querySelector("#results").innerText = `You picked ${results}! I've used my sixth sense to pick ${computerChoice}! Sorry. You lost. `
         stopGame()
     }
