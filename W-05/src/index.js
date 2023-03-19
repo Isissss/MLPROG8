@@ -1,7 +1,7 @@
 let model
 let videoWidth, videoHeight
 let ctx, canvas
- 
+const data = await fetch("src/data.json").then(res => res.json())
 const poseInput = document.querySelector("#poseInput")
 const addPoseButton = document.querySelector("#poseButton")
 const classifyButton = document.querySelector("#classifyButton")
@@ -9,22 +9,15 @@ const saveTrainingButton = document.querySelector("#saveTrainingButton")
 saveTrainingButton.addEventListener("click", () => saveTraining())
 const clearTrainingButton = document.querySelector("#deleteTrainingButton")
 clearTrainingButton.addEventListener("click", () => clearTraining())
-function clearTraining () {
-   KNN.clear()
-}
 
-const colors = {
-    scissors: "hsl(39, 89%, 49%)",
-    rock: "hsl(349, 71%, 52%)",
-    paper: "hsl(230, 89%, 62%)"
-}
+ 
 const VIDEO_WIDTH = 720
 const VIDEO_HEIGHT = 405
 let video
 let results
 let oldResults
 const k = 3
-const KNN = new kNear(k)
+const KNN = new kNear(k, data)
 
 //
 // start de applicatie
@@ -70,15 +63,15 @@ async function setupCamera() {
 async function savePose(video) {
 
     const predictions = await model.estimateHands(video) // ,true voor flip
-
+    const boundingBox = predictions[0].boundingBox
     if (predictions.length > 0) {
         const keypoints = predictions[0].landmarks
         keypoints.reduce((acc, curr) => {
             console.log(acc)
-            acc.push(curr[0], curr[1])
+            acc.push((curr[0] - boundingBox.topLeft[0] / boundingBox.bottomRight[0] - boundingBox.topLeft[0]), (curr[1] - boundingBox.topLeft[1] / boundingBox.bottomRight[1] - boundingBox.topLeft[1]))
 
             return acc
-
+         
         }, [])
 
 

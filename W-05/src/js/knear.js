@@ -1,8 +1,8 @@
  
 class kNear {
-    constructor(k) {
+    constructor(k, data) {
         this.k = k
-        this.training = localStorage.getItem('training') ? JSON.parse(localStorage.getItem('training')) : []
+        this.training = data ? data : []
         this.array_size = -1
     }
 
