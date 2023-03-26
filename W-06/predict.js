@@ -1,6 +1,7 @@
 document.getElementById('predict').addEventListener('submit', predict)
 document.querySelector('select').addEventListener('change', (e) => setValue(e.target))
 import { DecisionTree } from "./libraries/decisiontree.js"
+import { VegaTree } from "./libraries/vegatree.js"
 let decisionTree
 
 function loadSavedModel() {
@@ -11,7 +12,7 @@ function loadSavedModel() {
 
 function modelLoaded(model) {
     decisionTree = new DecisionTree(model)
-
+    let visual = new VegaTree('#view', 600, 400, decisionTree.toJSON())
     // test om te zien of het werkt
 
     let passenger = {

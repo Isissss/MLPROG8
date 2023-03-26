@@ -9,6 +9,7 @@
     <script defer src="predict.js" type="module"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="predict.css">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 </head>
 
 <body>
@@ -20,6 +21,8 @@
         <span style="text-align:center;">Fill in this form to receive a prediction for the satisfaction of a flight
             company customer. This is based
             on a model with an 84.3% accuracy.</span>
+
+        <div id="view"></div>
         <div id="selects">
             <form id="predict" style="display: flex; flex-direction: column; width: 100%;" action="">
                 <label for="class">Class</label>
@@ -51,8 +54,6 @@
                 </select>
                 <label for="age">Age</label>
                 <input type="number" name="age" id="age" min="1" max="100" required>
-
-
         </div>
         <span>Move the sliders to give a rating from 1-5. 1-2 Negative. 3 Neutral. 4-5 Positive.</span>
         <div id="sliders">
@@ -134,8 +135,9 @@
 
 
         </div>
-
-        <input type="submit" />
+        <div class="input-group">
+            <input type="submit" />
+        </div>
         </form>
         <span id="result"></span>
     </div>

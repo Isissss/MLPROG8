@@ -46,9 +46,7 @@ function trainModel(data) {
     let decisionTree = new DecisionTree({
         ignoredAttributes: ignored,
         trainingSet: trainData,
-
         categoryAttr: trainingLabel,
-
     })
 
     // Teken de boomstructuur - DOM element, breedte, hoogte, decision tree
