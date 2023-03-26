@@ -1,0 +1,705 @@
+{
+    "root": {
+        "attribute": "Online boarding",
+        "predicateName": ">=",
+        "pivot": 4,
+        "match": {
+            "attribute": "Type of Travel",
+            "predicateName": "==",
+            "pivot": "Business travel",
+            "match": {
+                "attribute": "Online boarding",
+                "predicateName": ">=",
+                "pivot": 5,
+                "match": {
+                    "attribute": "Customer Type",
+                    "predicateName": "==",
+                    "pivot": "Loyal Customer",
+                    "match": {
+                        "category": "satisfied"
+                    },
+                    "notMatch": {
+                        "attribute": "Inflight wifi service",
+                        "predicateName": ">=",
+                        "pivot": 5,
+                        "match": {
+                            "category": "satisfied"
+                        },
+                        "notMatch": {
+                            "attribute": "Ease of Online booking",
+                            "predicateName": ">=",
+                            "pivot": 4,
+                            "match": {
+                                "attribute": "Departure/Arrival time convenient",
+                                "predicateName": ">=",
+                                "pivot": 1,
+                                "match": {
+                                    "attribute": "On-board service",
+                                    "predicateName": ">=",
+                                    "pivot": 5,
+                                    "match": {
+                                        "attribute": "Food and drink",
+                                        "predicateName": ">=",
+                                        "pivot": 5,
+                                        "match": {
+                                            "category": "satisfied"
+                                        },
+                                        "notMatch": {
+                                            "attribute": "Age",
+                                            "predicateName": ">=",
+                                            "pivot": 38,
+                                            "match": {
+                                                "category": "satisfied"
+                                            },
+                                            "notMatch": {
+                                                "attribute": "Checkin service",
+                                                "predicateName": ">=",
+                                                "pivot": 4,
+                                                "match": {
+                                                    "attribute": "Gate location",
+                                                    "predicateName": ">=",
+                                                    "pivot": 2,
+                                                    "match": {
+                                                        "category": "neutral or dissatisfied"
+                                                    },
+                                                    "notMatch": {
+                                                        "category": "satisfied"
+                                                    },
+                                                    "matchedCount": 6,
+                                                    "notMatchedCount": 1
+                                                },
+                                                "notMatch": {
+                                                    "attribute": "Food and drink",
+                                                    "predicateName": ">=",
+                                                    "pivot": 4,
+                                                    "match": {
+                                                        "attribute": "Leg room service",
+                                                        "predicateName": ">=",
+                                                        "pivot": 3,
+                                                        "match": {
+                                                            "category": "neutral or dissatisfied"
+                                                        },
+                                                        "notMatch": {
+                                                            "category": "satisfied"
+                                                        },
+                                                        "matchedCount": 2,
+                                                        "notMatchedCount": 1
+                                                    },
+                                                    "notMatch": {
+                                                        "category": "satisfied"
+                                                    },
+                                                    "matchedCount": 3,
+                                                    "notMatchedCount": 4
+                                                },
+                                                "matchedCount": 7,
+                                                "notMatchedCount": 7
+                                            },
+                                            "matchedCount": 2,
+                                            "notMatchedCount": 14
+                                        },
+                                        "matchedCount": 5,
+                                        "notMatchedCount": 16
+                                    },
+                                    "notMatch": {
+                                        "attribute": "Checkin service",
+                                        "predicateName": ">=",
+                                        "pivot": 4,
+                                        "match": {
+                                            "attribute": "Age",
+                                            "predicateName": ">=",
+                                            "pivot": 23,
+                                            "match": {
+                                                "attribute": "Baggage handling",
+                                                "predicateName": ">=",
+                                                "pivot": 3,
+                                                "match": {
+                                                    "attribute": "Class",
+                                                    "predicateName": "==",
+                                                    "pivot": "Business",
+                                                    "match": {
+                                                        "attribute": "Seat comfort",
+                                                        "predicateName": ">=",
+                                                        "pivot": 4,
+                                                        "match": {
+                                                            "attribute": "Age",
+                                                            "predicateName": ">=",
+                                                            "pivot": 27,
+                                                            "match": {
+                                                                "category": "neutral or dissatisfied"
+                                                            },
+                                                            "notMatch": {
+                                                                "attribute": "Gender",
+                                                                "predicateName": "==",
+                                                                "pivot": "Male",
+                                                                "match": {
+                                                                    "category": "satisfied"
+                                                                },
+                                                                "notMatch": {
+                                                                    "category": "neutral or dissatisfied"
+                                                                },
+                                                                "matchedCount": 1,
+                                                                "notMatchedCount": 1
+                                                            },
+                                                            "matchedCount": 6,
+                                                            "notMatchedCount": 2
+                                                        },
+                                                        "notMatch": {
+                                                            "attribute": "Inflight service",
+                                                            "predicateName": ">=",
+                                                            "pivot": 5,
+                                                            "match": {
+                                                                "category": "neutral or dissatisfied"
+                                                            },
+                                                            "notMatch": {
+                                                                "attribute": "Gender",
+                                                                "predicateName": "==",
+                                                                "pivot": "Male",
+                                                                "match": {
+                                                                    "category": "satisfied"
+                                                                },
+                                                                "notMatch": {
+                                                                    "attribute": "Gate location",
+                                                                    "predicateName": ">=",
+                                                                    "pivot": 4,
+                                                                    "match": {
+                                                                        "category": "satisfied"
+                                                                    },
+                                                                    "notMatch": {
+                                                                        "category": "neutral or dissatisfied"
+                                                                    },
+                                                                    "matchedCount": 1,
+                                                                    "notMatchedCount": 1
+                                                                },
+                                                                "matchedCount": 4,
+                                                                "notMatchedCount": 2
+                                                            },
+                                                            "matchedCount": 3,
+                                                            "notMatchedCount": 6
+                                                        },
+                                                        "matchedCount": 8,
+                                                        "notMatchedCount": 9
+                                                    },
+                                                    "notMatch": {
+                                                        "category": "neutral or dissatisfied"
+                                                    },
+                                                    "matchedCount": 17,
+                                                    "notMatchedCount": 5
+                                                },
+                                                "notMatch": {
+                                                    "category": "satisfied"
+                                                },
+                                                "matchedCount": 22,
+                                                "notMatchedCount": 2
+                                            },
+                                            "notMatch": {
+                                                "attribute": "Baggage handling",
+                                                "predicateName": ">=",
+                                                "pivot": 4,
+                                                "match": {
+                                                    "category": "satisfied"
+                                                },
+                                                "notMatch": {
+                                                    "attribute": "Gender",
+                                                    "predicateName": "==",
+                                                    "pivot": "Male",
+                                                    "match": {
+                                                        "category": "satisfied"
+                                                    },
+                                                    "notMatch": {
+                                                        "category": "neutral or dissatisfied"
+                                                    },
+                                                    "matchedCount": 1,
+                                                    "notMatchedCount": 1
+                                                },
+                                                "matchedCount": 4,
+                                                "notMatchedCount": 2
+                                            },
+                                            "matchedCount": 24,
+                                            "notMatchedCount": 6
+                                        },
+                                        "notMatch": {
+                                            "attribute": "Seat comfort",
+                                            "predicateName": ">=",
+                                            "pivot": 4,
+                                            "match": {
+                                                "attribute": "Class",
+                                                "predicateName": "==",
+                                                "pivot": "Business",
+                                                "match": {
+                                                    "category": "satisfied"
+                                                },
+                                                "notMatch": {
+                                                    "attribute": "On-board service",
+                                                    "predicateName": ">=",
+                                                    "pivot": 2,
+                                                    "match": {
+                                                        "category": "neutral or dissatisfied"
+                                                    },
+                                                    "notMatch": {
+                                                        "attribute": "Gender",
+                                                        "predicateName": "==",
+                                                        "pivot": "Female",
+                                                        "match": {
+                                                            "category": "satisfied"
+                                                        },
+                                                        "notMatch": {
+                                                            "category": "neutral or dissatisfied"
+                                                        },
+                                                        "matchedCount": 2,
+                                                        "notMatchedCount": 1
+                                                    },
+                                                    "matchedCount": 6,
+                                                    "notMatchedCount": 3
+                                                },
+                                                "matchedCount": 2,
+                                                "notMatchedCount": 9
+                                            },
+                                            "notMatch": {
+                                                "category": "neutral or dissatisfied"
+                                            },
+                                            "matchedCount": 11,
+                                            "notMatchedCount": 14
+                                        },
+                                        "matchedCount": 30,
+                                        "notMatchedCount": 25
+                                    },
+                                    "matchedCount": 21,
+                                    "notMatchedCount": 55
+                                },
+                                "notMatch": {
+                                    "attribute": "Age",
+                                    "predicateName": ">=",
+                                    "pivot": 24,
+                                    "match": {
+                                        "attribute": "Class",
+                                        "predicateName": "==",
+                                        "pivot": "Eco",
+                                        "match": {
+                                            "attribute": "Age",
+                                            "predicateName": ">=",
+                                            "pivot": 55,
+                                            "match": {
+                                                "category": "satisfied"
+                                            },
+                                            "notMatch": {
+                                                "category": "neutral or dissatisfied"
+                                            },
+                                            "matchedCount": 2,
+                                            "notMatchedCount": 6
+                                        },
+                                        "notMatch": {
+                                            "attribute": "Checkin service",
+                                            "predicateName": ">=",
+                                            "pivot": 5,
+                                            "match": {
+                                                "attribute": "On-board service",
+                                                "predicateName": ">=",
+                                                "pivot": 4,
+                                                "match": {
+                                                    "category": "neutral or dissatisfied"
+                                                },
+                                                "notMatch": {
+                                                    "category": "satisfied"
+                                                },
+                                                "matchedCount": 1,
+                                                "notMatchedCount": 1
+                                            },
+                                            "notMatch": {
+                                                "category": "satisfied"
+                                            },
+                                            "matchedCount": 2,
+                                            "notMatchedCount": 4
+                                        },
+                                        "matchedCount": 8,
+                                        "notMatchedCount": 6
+                                    },
+                                    "notMatch": {
+                                        "attribute": "Ease of Online booking",
+                                        "predicateName": ">=",
+                                        "pivot": 5,
+                                        "match": {
+                                            "category": "satisfied"
+                                        },
+                                        "notMatch": {
+                                            "category": "neutral or dissatisfied"
+                                        },
+                                        "matchedCount": 19,
+                                        "notMatchedCount": 1
+                                    },
+                                    "matchedCount": 14,
+                                    "notMatchedCount": 20
+                                },
+                                "matchedCount": 76,
+                                "notMatchedCount": 34
+                            },
+                            "notMatch": {
+                                "attribute": "Inflight wifi service",
+                                "predicateName": ">=",
+                                "pivot": 1,
+                                "match": {
+                                    "attribute": "Age",
+                                    "predicateName": ">=",
+                                    "pivot": 42,
+                                    "match": {
+                                        "attribute": "Food and drink",
+                                        "predicateName": ">=",
+                                        "pivot": 3,
+                                        "match": {
+                                            "attribute": "Class",
+                                            "predicateName": "==",
+                                            "pivot": "Business",
+                                            "match": {
+                                                "category": "satisfied"
+                                            },
+                                            "notMatch": {
+                                                "category": "neutral or dissatisfied"
+                                            },
+                                            "matchedCount": 2,
+                                            "notMatchedCount": 1
+                                        },
+                                        "notMatch": {
+                                            "category": "neutral or dissatisfied"
+                                        },
+                                        "matchedCount": 3,
+                                        "notMatchedCount": 6
+                                    },
+                                    "notMatch": {
+                                        "category": "neutral or dissatisfied"
+                                    },
+                                    "matchedCount": 9,
+                                    "notMatchedCount": 50
+                                },
+                                "notMatch": {
+                                    "category": "satisfied"
+                                },
+                                "matchedCount": 59,
+                                "notMatchedCount": 3
+                            },
+                            "matchedCount": 110,
+                            "notMatchedCount": 62
+                        },
+                        "matchedCount": 770,
+                        "notMatchedCount": 172
+                    },
+                    "matchedCount": 7352,
+                    "notMatchedCount": 942
+                },
+                "notMatch": {
+                    "attribute": "On-board service",
+                    "predicateName": ">=",
+                    "pivot": 4,
+                    "match": {
+                        "attribute": "Customer Type",
+                        "predicateName": "==",
+                        "pivot": "Loyal Customer",
+                        "match": {
+                            "attribute": "Checkin service",
+                            "predicateName": ">=",
+                            "pivot": 3,
+                            "match": {
+                                "attribute": "Baggage handling",
+                                "predicateName": ">=",
+                                "pivot": 5,
+                                "match": {
+                                    "attribute": "Seat comfort",
+                                    "predicateName": ">=",
+                                    "pivot": 4,
+                                    "match": {
+                                        "category": "satisfied"
+                                    },
+                                    "notMatch": {
+                                        "attribute": "Food and drink",
+                                        "predicateName": ">=",
+                                        "pivot": 3,
+                                        "match": {
+                                            "category": "satisfied"
+                                        },
+                                        "notMatch": {
+                                            "attribute": "Leg room service",
+                                            "predicateName": ">=",
+                                            "pivot": 5,
+                                            "match": {
+                                                "category": "satisfied"
+                                            },
+                                            "notMatch": {
+                                                "attribute": "Seat comfort",
+                                                "predicateName": ">=",
+                                                "pivot": 3,
+                                                "match": {
+                                                    "category": "neutral or dissatisfied"
+                                                },
+                                                "notMatch": {
+                                                    "category": "satisfied"
+                                                },
+                                                "matchedCount": 3,
+                                                "notMatchedCount": 2
+                                            },
+                                            "matchedCount": 25,
+                                            "notMatchedCount": 5
+                                        },
+                                        "matchedCount": 78,
+                                        "notMatchedCount": 30
+                                    },
+                                    "matchedCount": 2265,
+                                    "notMatchedCount": 108
+                                },
+                                "notMatch": {
+                                    "attribute": "Seat comfort",
+                                    "predicateName": ">=",
+                                    "pivot": 4,
+                                    "match": {
+                                        "attribute": "Class",
+                                        "predicateName": "==",
+                                        "pivot": "Business",
+                                        "match": {
+                                            "attribute": "Inflight service",
+                                            "predicateName": ">=",
+                                            "pivot": 4,
+                                            "match": {
+                                                "attribute": "Food and drink",
+                                                "predicateName": ">=",
+                                                "pivot": 2,
+                                                "match": {
+                                                    "attribute": "Cleanliness",
+                                                    "predicateName": ">=",
+                                                    "pivot": 3,
+                                                    "match": {
+                                                        "attribute": "Leg room service",
+                                                        "predicateName": ">=",
+                                                        "pivot": 2,
+                                                        "match": {
+                                                            "attribute": "Baggage handling",
+                                                            "predicateName": ">=",
+                                                            "pivot": 4,
+                                                            "match": {
+                                                                "attribute": "Inflight wifi service",
+                                                                "predicateName": ">=",
+                                                                "pivot": 4,
+                                                                "match": {
+                                                                    "attribute": "Gate location",
+                                                                    "predicateName": ">=",
+                                                                    "pivot": 4,
+                                                                    "match": {
+                                                                        "attribute": "Age",
+                                                                        "predicateName": ">=",
+                                                                        "pivot": 34,
+                                                                        "match": {
+                                                                            "category": "satisfied"
+                                                                        },
+                                                                        "notMatch": {
+                                                                            "attribute": "Inflight entertainment",
+                                                                            "predicateName": ">=",
+                                                                            "pivot": 3,
+                                                                            "match": {
+                                                                                "attribute": "Age",
+                                                                                "predicateName": ">=",
+                                                                                "pivot": 28,
+                                                                                "match": {
+                                                                                    "category": "satisfied"
+                                                                                },
+                                                                                "notMatch": {
+                                                                                    "attribute": "Inflight service",
+                                                                                    "predicateName": ">=",
+                                                                                    "pivot": 5,
+                                                                                    "match": {
+                                                                                        "category": "satisfied"
+                                                                                    },
+                                                                                    "notMatch": {
+                                                                                        "attribute": "On-board service",
+                                                                                        "predicateName": ">=",
+                                                                                        "pivot": 5,
+                                                                                        "match": {
+                                                                                            "category": "satisfied"
+                                                                                        },
+                                                                                        "notMatch": {
+                                                                                            "attribute": "Age",
+                                                                                            "predicateName": ">=",
+                                                                                            "pivot": 18,
+                                                                                            "match": {
+                                                                                                "attribute": "Gender",
+                                                                                                "predicateName": "==",
+                                                                                                "pivot": "Female",
+                                                                                                "match": {
+                                                                                                    "category": "satisfied"
+                                                                                                },
+                                                                                                "notMatch": {
+                                                                                                    "attribute": "Age",
+                                                                                                    "predicateName": ">=",
+                                                                                                    "pivot": 27,
+                                                                                                    "match": {
+                                                                                                        "category": "neutral or dissatisfied"
+                                                                                                    },
+                                                                                                    "notMatch": {
+                                                                                                        "category": "satisfied"
+                                                                                                    },
+                                                                                                    "matchedCount": 1,
+                                                                                                    "notMatchedCount": 2
+                                                                                                },
+                                                                                                "matchedCount": 11,
+                                                                                                "notMatchedCount": 3
+                                                                                            },
+                                                                                            "notMatch": {
+                                                                                                "attribute": "Leg room service",
+                                                                                                "predicateName": ">=",
+                                                                                                "pivot": 4,
+                                                                                                "match": {
+                                                                                                    "category": "neutral or dissatisfied"
+                                                                                                },
+                                                                                                "notMatch": {
+                                                                                                    "category": "satisfied"
+                                                                                                },
+                                                                                                "matchedCount": 1,
+                                                                                                "notMatchedCount": 1
+                                                                                            },
+                                                                                            "matchedCount": 14,
+                                                                                            "notMatchedCount": 2
+                                                                                        },
+                                                                                        "matchedCount": 11,
+                                                                                        "notMatchedCount": 16
+                                                                                    },
+                                                                                    "matchedCount": 24,
+                                                                                    "notMatchedCount": 27
+                                                                                },
+                                                                                "matchedCount": 60,
+                                                                                "notMatchedCount": 51
+                                                                            },
+                                                                            "notMatch": {
+                                                                                "category": "neutral or dissatisfied"
+                                                                            },
+                                                                            "matchedCount": 111,
+                                                                            "notMatchedCount": 1
+                                                                        },
+                                                                        "matchedCount": 894,
+                                                                        "notMatchedCount": 112
+                                                                    },
+                                                                    "notMatch": {
+                                                                        "category": "neutral or dissatisfied"
+                                                                    },
+                                                                    "matchedCount": 1006,
+                                                                    "notMatchedCount": 7
+                                                                },
+                                                                "notMatch": {
+                                                                    "category": "satisfied"
+                                                                },
+                                                                "matchedCount": 1013,
+                                                                "notMatchedCount": 1436
+                                                            },
+                                                            "notMatch": {
+                                                                "attribute": "On-board service",
+                                                                "predicateName": ">=",
+                                                                "pivot": 5,
+                                                                "match": {
+                                                                    "category": "satisfied"
+                                                                },
+                                                                "notMatch": {
+                                                                    "attribute": "Inflight service",
+                                                                    "predicateName": ">=",
+                                                                    "pivot": 5,
+                                                                    "match": {
+                                                                        "category": "satisfied"
+                                                                    },
+                                                                    "notMatch": {
+                                                                        "attribute": "Ease of Online booking",
+                                                                        "predicateName": ">=",
+                                                                        "pivot": 2,
+                                                                        "match": {
+                                                                            "category": "neutral or dissatisfied"
+                                                                        },
+                                                                        "notMatch": {
+                                                                            "category": "satisfied"
+                                                                        },
+                                                                        "matchedCount": 6,
+                                                                        "notMatchedCount": 5
+                                                                    },
+                                                                    "matchedCount": 9,
+                                                                    "notMatchedCount": 11
+                                                                },
+                                                                "matchedCount": 29,
+                                                                "notMatchedCount": 20
+                                                            },
+                                                            "matchedCount": 2449,
+                                                            "notMatchedCount": 49
+                                                        },
+                                                        "notMatch": {
+                                                            "attribute": "Baggage handling",
+                                                            "predicateName": ">=",
+                                                            "pivot": 4,
+                                                            "match": {
+                                                                "category": "neutral or dissatisfied"
+                                                            },
+                                                            "notMatch": {
+                                                                "category": "satisfied"
+                                                            },
+                                                            "matchedCount": 4,
+                                                            "notMatchedCount": 11
+                                                        },
+                                                        "matchedCount": 2498,
+                                                        "notMatchedCount": 15
+                                                    },
+                                                    "notMatch": {
+                                                        "category": "satisfied"
+                                                    },
+                                                    "matchedCount": 2513,
+                                                    "notMatchedCount": 24
+                                                },
+                                                "notMatch": {
+                                                    "category": "neutral or dissatisfied"
+                                                },
+                                                "matchedCount": 2537,
+                                                "notMatchedCount": 19
+                                            },
+                                            "notMatch": {
+                                                "category": "satisfied"
+                                            },
+                                            "matchedCount": 2556,
+                                            "notMatchedCount": 100
+                                        },
+                                        "notMatch": {
+                                            "category": "satisfied"
+                                        },
+                                        "matchedCount": 2656,
+                                        "notMatchedCount": 253
+                                    },
+                                    "notMatch": {
+                                        "category": "satisfied"
+                                    },
+                                    "matchedCount": 2909,
+                                    "notMatchedCount": 195
+                                },
+                                "matchedCount": 2373,
+                                "notMatchedCount": 3104
+                            },
+                            "notMatch": {
+                                "category": "satisfied"
+                            },
+                            "matchedCount": 5477,
+                            "notMatchedCount": 584
+                        },
+                        "notMatch": {
+                            "category": "satisfied"
+                        },
+                        "matchedCount": 6061,
+                        "notMatchedCount": 915
+                    },
+                    "notMatch": {
+                        "category": "satisfied"
+                    },
+                    "matchedCount": 6976,
+                    "notMatchedCount": 4551
+                },
+                "matchedCount": 8294,
+                "notMatchedCount": 11527
+            },
+            "notMatch": {
+                "category": "neutral or dissatisfied"
+            },
+            "matchedCount": 19821,
+            "notMatchedCount": 5045
+        },
+        "notMatch": {
+            "category": "neutral or dissatisfied"
+        },
+        "matchedCount": 24866,
+        "notMatchedCount": 25218
+    }
+}

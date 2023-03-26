@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="predict.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="predict.css">
+</head>
+
+<body>
+
+    <a href="./predict.html">Predict</a>
+    <a href="./train.html">Train</a>
+    <div id="main">
+        <h3> Predict the satisfaction of a customer</h3>
+        <span style="text-align:center;">Fill in this form to receive a prediction for the satisfaction of a flight
+            company customer. This is based
+            on a model with an 84.3% accuracy.</span>
+        <div id="selects">
+            <form id="predict" style="display: flex; flex-direction: column; width: 100%;" action="">
+                <label for="class">Class</label>
+                <select name="class" id="class" required>
+                    <option selected disabled hidden>Pick an option</option>
+                    <option value="Business">Business</option>
+                    <option value="Eco">Eco</option>
+                    <option value="Eco Plus">Eco Plus</option>
+                </select>
+                <label for="travel">Travel type </label>
+                <select name="travel" id="travel">
+                    <option selected disabled hidden>Pick an option</option>
+                    <option value="Personal Travel">Personal Travel</option>
+                    <option value="Business travel">Business travel</option>
+                </select>
+                <label for="customer">Customer type</label>
+                <select name="customer" id="customer">
+                    <option selected disabled hidden>Pick an option</option>
+                    <option value="Loyal Customer">Loyal Customer</option>
+                    <option value="disloyal Customer">disloyal Customer</option>
+                </select>
+                <!-- gender input  -->
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                    <option selected disabled hidden>Pick an option</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+
+                </select>
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age" min="1" max="100" required>
+
+
+        </div>
+        <span>Move the sliders to give a rating from 1-5. 1-2 Negative. 3 Neutral. 4-5 Positive.</span>
+        <div id="sliders">
+
+            <div class="input-group">
+                <label for="wifi">Inflight wifi service </label><span
+                    style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;" id="wifi-value">-</span>
+                <input type="range" name="wifi" id="wifi" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="time">Departure/Arrival time convenient</label>
+                <span style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;" id="time-value">-</span>
+                <input type="range" name="time" id="time" min="1" max="5" value="1" required>
+            </div>
+
+
+            <div class="input-group">
+                <label for="booking">Ease of Online booking <span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="booking-value"></span></label>
+                <input type="range" name="booking" id="booking" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="food">Food and drink <span style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="food-value"></span></label>
+                <input type="range" name="food" id="food" min="1" max="5" value="1" required>
+            </div>
+
+            <div class="input-group">
+                <label for="gate">Gate location <span style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="gate-value"></span></label>
+                <input type="range" name="gate" id="gate" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="boarding">Online boarding <span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="boarding-value"></span></label>
+                <input type="range" name="boarding" id="boarding" min="1" value="1" max="5" required>
+            </div>
+
+            <div class="input-group">
+                <label for="seat">Seat comfort <span style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="seat-value"></span></label>
+                <input type="range" name="seat" id="seat" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="entertainment">Inflight entertainment<span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="entertainment-value"></span></label>
+                <input type="range" name="entertainment" id="entertainment" min="1" value="1" max="5" required>
+            </div>
+            <div class="input-group">
+                <label for="service">On-board service <span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="service-value"></span></label>
+                <input type="range" name="service" id="service" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="legroom">Leg room service <span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="legroom-value"></span></label>
+                <input type="range" name="legroom" id="legroom" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="baggage">Baggage handling <span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="baggage-value"></span></label>
+                <input type="range" name="baggage" id="baggage" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="checkin">Checkin service <span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="checkin-value"></span></label>
+                <input type="range" name="checkin" id="checkin" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="inflight">Inflight service <span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="inflight-value"></span></label>
+                <input type="range" name="inflight" id="inflight" min="1" max="5" value="1" required>
+            </div>
+            <div class="input-group">
+                <label for="cleanliness">Cleanliness <span
+                        style="font-weight: bold; font-size: 1.5rem; margin-left: 15px;"
+                        id="cleanliness-value"></span></label>
+                <input type="range" name="cleanliness" id="cleanliness" min="1" max="5" value="1" required>
+            </div>
+
+
+        </div>
+
+        <input type="submit" />
+        </form>
+        <span id="result"></span>
+    </div>
+
+</body>
+
+</html>
