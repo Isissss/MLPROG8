@@ -54,7 +54,7 @@ function setValue(target) {
     }
 
 }
-const test = document.getElementById('sliders').addEventListener('input', (e) => setValue(e.target))
+document.getElementById('sliders').addEventListener('input', (e) => setValue(e.target))
 
 function predict(e) {
     e.preventDefault()

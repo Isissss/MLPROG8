@@ -55,7 +55,7 @@ function trainModel(data) {
     let visual = new VegaTree('#view', 800, 400, decisionTree.toJSON())
 
     // todo : bereken de accuracy met behulp van alle test data
-    const { dissatisfiedCorrect, dissatisfiedPredicted, satisfiedCorrect, satisfiedPredicted, accuracy } = getPrediction(decisionTree, testData)
+    const { dissatisfiedCorrect, dissatisfiedPredicted, satisfiedCorrect, satisfiedPredicted, accuracy } = getPrediction(decisionTree, trainData)
 
 
     console.log(`Accuracy: ${accuracy}`)
