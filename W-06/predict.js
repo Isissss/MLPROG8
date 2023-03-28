@@ -12,7 +12,7 @@ function loadSavedModel() {
 
 function modelLoaded(model) {
     decisionTree = new DecisionTree(model)
-    let visual = new VegaTree('#view', 600, 400, decisionTree.toJSON())
+    let visual = new VegaTree('#view', 500, 400, decisionTree.toJSON())
     // test om te zien of het werkt
 
     let passenger = {

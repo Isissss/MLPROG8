@@ -11,7 +11,7 @@ const ignored = ["", "id", "Flight Distance", "Satisfaction", "Arrival Delay in 
 
 
 let testData
-
+let decisionTree
 
 //
 // laad csv data als json
@@ -43,54 +43,56 @@ function trainModel(data) {
     const validationData = data.slice(Math.floor(data.length * 0.8), data.length)
 
     // maak het algoritme aan
-    let decisionTree = new DecisionTree({
+   decisionTree = new DecisionTree({
         ignoredAttributes: ignored,
         trainingSet: trainData,
         categoryAttr: trainingLabel,
     })
 
     // Teken de boomstructuur - DOM element, breedte, hoogte, decision tree
-    let visual = new VegaTree('#view', 800, 400, decisionTree.toJSON())
+    new VegaTree('#view', 800, 400, decisionTree.toJSON())
 
     // todo : bereken de accuracy met behulp van alle test data
-    const { dissatisfiedCorrect, dissatisfiedPredicted, satisfiedCorrect, satisfiedPredicted, accuracy } = getPrediction(decisionTree, trainData)
+    const { dissatisfiedCorrect, dissatisfiedIncorrect, satisfiedCorrect, satisfiedIncorrect, accuracy } = getPrediction(trainData)
 
 
     console.log(`Accuracy: ${accuracy}`)
 
     document.getElementById("accuracy").innerHTML = `Accuracy : ${accuracy.toFixed(3) * 100}% (${accuracy})`
     document.getElementById("satisfiedCorrect").innerHTML = satisfiedCorrect
-    document.getElementById("satisfiedPredicted").innerHTML = satisfiedPredicted - satisfiedCorrect
+    document.getElementById("satisfiedPredicted").innerHTML = satisfiedIncorrect
     document.getElementById("dissatisfiedCorrect").innerHTML = dissatisfiedCorrect
-    document.getElementById("dissatisfiedPredicted").innerHTML = dissatisfiedPredicted - dissatisfiedCorrect
+    document.getElementById("dissatisfiedPredicted").innerHTML = dissatisfiedIncorrect
 
 }
 
-function getPrediction(decisionTree, people) {
-    let predicted = { satisfiedCorrect: 0, dissatisfiedCorrect: 0, satisfiedPredicted: 0, dissatisfiedPredicted: 0, accuracy: 0 }
+function getPrediction( people) {
+    let predicted = { satisfiedCorrect: 0, dissatisfiedCorrect: 0, satisfiedIncorrect: 0, dissatisfiedIncorrect: 0, accuracy: 0 }
 
     for (let person of people) {
-        let prediction = testPerson(decisionTree, person)
+        let prediction = testPerson(person)
 
         if (prediction.prediction === "satisfied") {
             if (prediction.actual === prediction.prediction) {
                 predicted.satisfiedCorrect++
+            } else {
+            predicted.satisfiedIncorrect++
             }
-            predicted.satisfiedPredicted++
         }
         if (prediction.prediction === "neutral or dissatisfied") {
             if (prediction.actual === prediction.prediction) {
                 predicted.dissatisfiedCorrect++
+            } else {
+            predicted.dissatisfiedIncorrect++
             }
-            predicted.dissatisfiedPredicted++
         }
     }
     predicted.accuracy = (predicted.satisfiedCorrect + predicted.dissatisfiedCorrect) / people.length
-    console.log(people.length)
+  
     return predicted
 }
 
-function testPerson(decisionTree, person) {
+function testPerson(person) {
     const personWithoutSatisfaction = { ...person }
     delete personWithoutSatisfaction.Satisfaction
 
