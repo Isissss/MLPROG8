@@ -9,13 +9,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
 
-    <script defer src="train.js" type="module"></script>
+
+    <script src="train.js" type="module"></script>
     <title>ML5 Neural Network Regression</title>
 </head>
 
 <body>
-    <div><h2>ML5 Neural Network Regression</h2></div>
+    <a href="./predict.html">Predict</a>
+    <a href="./train.html">Train</a>
+    <div>
+        <h2>ML5 Neural Network Regression</h2>
+    </div>
+    <button id="save" disabled>Save model</button>
+    <button id="train">Start training</button>
+    <label for="epochs">Epochs</label>
+    <input type="number" id="epochs" value="10" min="1" max="100">
     <canvas id="myChart" width="300" height="200"></canvas>
 </body>
 
-</html>s
+</html>

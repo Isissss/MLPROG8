@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="predict.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+</head>
+
+<body>
+    <a href="./predict.html">Predict</a>
+    <a href="./train.html">Train</a>
+    <div id="main">
+        <h3> Predict the house price in Utrecht 🏘️ </h3>
+        <hr />
+        <span style="text-align:center;"> </span>
+
+        <form id="predict" style="display: flex; flex-direction: column; width: 100%;" action="">
+            <div class="inputs">
+                <div class="form-input">
+                    <label for="zipcode">Zipcode</label>
+                    <input type="number" name="zipcode" id="zipcode" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="lotlen">Lot length</label>
+                    <input type="number" name="lotlen" id="lotlen" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="lotwidth">Lot width</label>
+                    <input type="number" name="lotwidth" id="lotwidth" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="lotarea">Lot area</label>
+                    <input type="number" name="lotarea" id="lotarea" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="housearea">House area</label>
+                    <input type="number" name="housearea" id="housearea" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="gardensize">Garden size</label>
+                    <input type="number" name="gardensize" id="gardensize" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="balcony">Balcony</label>
+                    <input type="number" name="balcony" id="balcony" min="1" required>
+                </div>
+
+                <!-- <div class="form-input">
+                    <label for="xcoor">X coordinate</label>
+                    <input type="number" name="xcoor" id="xcoor" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="ycoor">Y coordinate</label>
+                    <input type="number" name="ycoor" id="ycoor" min="1" required>
+                </div> -->
+
+                <div class="form-input">
+                    <label for="buildyear">Build year</label>
+                    <input type="number" name="buildyear" id="buildyear" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="bathrooms">Bathrooms</label>
+                    <input type="number" name="bathrooms" id="bathrooms" min="1" required>
+                </div>
+
+                <div class="form-input">
+                    <label for="taxvalue">Tax value</label>
+                    <input type="number" name="taxvalue" id="taxvalue" min="1" required>
+                </div>
+
+                <button type="submit" id="submit-btn">Predict</button>
+            </div>
+            <hr />
+            <div id="result-div">
+                Retailvalue prediction: <span id="result"></span>
+            </div>
+        </form>
+
+</body>
+
+</html>
