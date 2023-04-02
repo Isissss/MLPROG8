@@ -21,12 +21,12 @@ function prepareData(data) {
     trainingsData = data.slice(0, Math.floor(data.length * 0.8))
     testData = data.slice(Math.floor(data.length * 0.8) + 1)
 
-    // showChart(data);
+    showChart(data);
 }
 
 function showChart(data) {
     const chartdata = data.map(house => ({
-        x: house.taxvalue,
+        x: house.LotArea,
         y: house.retailvalue,
     }))
 
@@ -38,7 +38,7 @@ function trainData() {
 
     // een voor een de data toevoegen aan het neural network
     for (let house of trainingsData) {
-        nn.addData({ Zipcode: house.Zipcode, LotLen: house.LotLen, LotWidth: house.LotWidth, LotArea: house.LotArea, HouseArea: house.HouseArea, GardenSize: house.GardenSize, Balcony: house.Balcony, Buildyear: house.Buildyear, bathrooms: house.bathrooms, taxvalue: house.taxvalue }, { retailvalue: house.retailvalue })
+        nn.addData({ LotLen: house.LotLen, LotArea: house.LotArea, HouseArea: house.HouseArea, bathrooms: house.bathrooms, Balcony: house.Balcony, GardenSize: house.GardenSize, taxvalue: house.taxvalue }, { retailvalue: house.retailvalue })
     }
 
     // normalize
@@ -56,10 +56,17 @@ function trainData() {
 }
 
 async function makePrediction() {
+    let sum = 0
     for (let i = 0; i < testData.length; i++) {
-        const result = await nn.predict({ Zipcode: testData[i].Zipcode, LotLen: testData[i].LotLen, LotWidth: testData[i].LotWidth, LotArea: testData[i].LotArea, HouseArea: testData[i].HouseArea, GardenSize: testData[i].GardenSize, Balcony: testData[i].Balcony, Buildyear: testData[i].Buildyear, bathrooms: testData[i].bathrooms, taxvalue: testData[i].taxvalue })
+        const result = await nn.predict({ LotLen: testData[i].LotLen, LotArea: testData[i].LotArea, HouseArea: testData[i].HouseArea, GardenSize: testData[i].GardenSize, Balcony: testData[i].Balcony, bathrooms: testData[i].bathrooms, taxvalue: testData[i].taxvalue })
         console.log(result[0].retailvalue, testData[i].retailvalue)
+        const temp = result[0].retailvalue - testData[i].retailvalue
+        sum += temp
+
     }
+    console.log(sum)
+
+
 }
 
 function saveModel() {

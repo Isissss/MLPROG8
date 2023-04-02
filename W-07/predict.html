@@ -21,39 +21,36 @@
 
         <form id="predict" style="display: flex; flex-direction: column; width: 100%;" action="">
             <div class="inputs">
-                <div class="form-input">
-                    <label for="zipcode">Zipcode</label>
-                    <input type="number" name="zipcode" id="zipcode" min="1" required>
-                </div>
+
 
                 <div class="form-input">
-                    <label for="lotlen">Lot length</label>
-                    <input type="number" name="lotlen" id="lotlen" min="1" required>
+                    <label for="lotlen">Lot length (5 - 115)</label>
+                    <input type="number" name="lotlen" id="lotlen" min="5" max="115" required>
                 </div>
 
-                <div class="form-input">
+                <!-- <div class="form-input">
                     <label for="lotwidth">Lot width</label>
                     <input type="number" name="lotwidth" id="lotwidth" min="1" required>
+                </div> -->
+
+                <div class="form-input">
+                    <label for="lotarea">Lot area (111 - 1198)</label>
+                    <input type="number" name="lotarea" id="lotarea" min="111" max="1198" required>
                 </div>
 
                 <div class="form-input">
-                    <label for="lotarea">Lot area</label>
-                    <input type="number" name="lotarea" id="lotarea" min="1" required>
+                    <label for="housearea">House area (80 - 250) </label>
+                    <input type="number" name="housearea" id="housearea" min="80" max="250" required>
                 </div>
 
                 <div class="form-input">
-                    <label for="housearea">House area</label>
-                    <input type="number" name="housearea" id="housearea" min="1" required>
+                    <label for="gardensize">Garden size (13 - 1111) </label>
+                    <input type="number" name="gardensize" id="gardensize" min="13" max="1111" required>
                 </div>
 
                 <div class="form-input">
-                    <label for="gardensize">Garden size</label>
-                    <input type="number" name="gardensize" id="gardensize" min="1" required>
-                </div>
-
-                <div class="form-input">
-                    <label for="balcony">Balcony</label>
-                    <input type="number" name="balcony" id="balcony" min="1" required>
+                    <label for="balcony">Balcony (0 - 2) </label>
+                    <input type="number" name="balcony" id="balcony" min="0" max="2" required>
                 </div>
 
                 <!-- <div class="form-input">
@@ -65,22 +62,22 @@
                     <label for="ycoor">Y coordinate</label>
                     <input type="number" name="ycoor" id="ycoor" min="1" required>
                 </div> -->
-
+                <!-- 
                 <div class="form-input">
                     <label for="buildyear">Build year</label>
                     <input type="number" name="buildyear" id="buildyear" min="1" required>
+                </div> -->
+
+                <div class="form-input">
+                    <label for="bathrooms">Bathrooms (1-2) </label>
+                    <input type="number" name="bathrooms" id="bathrooms" min="1" max="2" required>
                 </div>
 
                 <div class="form-input">
-                    <label for="bathrooms">Bathrooms</label>
-                    <input type="number" name="bathrooms" id="bathrooms" min="1" required>
+                    <label for="taxvalue">Tax value (65,600 - 345,000)</label>
+                    <input type="number" name="taxvalue" id="taxvalue" min="65600" max="345000" required>
                 </div>
-
-                <div class="form-input">
-                    <label for="taxvalue">Tax value</label>
-                    <input type="number" name="taxvalue" id="taxvalue" min="1" required>
-                </div>
-
+                <br>
                 <button type="submit" id="submit-btn">Predict</button>
             </div>
             <hr />
