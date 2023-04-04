@@ -2,7 +2,7 @@ import { createChart, updateChart } from "./scatterplot.js"
 let trainingsData
 let testData
 
-document.getElementById("save").addEventListener("click", saveModel)
+document.getElementById("save").addEventListener("click", () => nn.save())
 document.getElementById("train").addEventListener("click", trainData)
 
 const nn = ml5.neuralNetwork({ task: 'regression', debug: true })
@@ -48,29 +48,19 @@ function trainData() {
     console.log(epochInput)
     nn.train({ epochs: epochInput }, () => {
         console.log("training done")
-        makePrediction()
+        finishedTraining()
         document.getElementById("save").disabled = false
         document.getElementById("train").disabled = false
     })
 
 }
 
-async function makePrediction() {
-    let sum = 0
+async function finishedTraining() {
     for (let i = 0; i < testData.length; i++) {
         const result = await nn.predict({ LotLen: testData[i].LotLen, LotArea: testData[i].LotArea, HouseArea: testData[i].HouseArea, GardenSize: testData[i].GardenSize, Balcony: testData[i].Balcony, bathrooms: testData[i].bathrooms, taxvalue: testData[i].taxvalue })
         console.log(result[0].retailvalue, testData[i].retailvalue)
-        const temp = result[0].retailvalue - testData[i].retailvalue
-        sum += temp
-
     }
-    console.log(sum)
-
-
 }
 
-function saveModel() {
-    nn.save()
-}
 
 loadData()

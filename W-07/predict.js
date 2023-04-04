@@ -34,7 +34,7 @@ async function submitHandler(e) {
 }
 
 async function predict(house) {
-    const prediction = await nn.predict({ Zipcode: house.Zipcode, LotLen: house.LotLen, LotArea: house.LotArea, HouseArea: house.HouseArea, GardenSize: house.GardenSize, Balcony: house.Balcony, bathrooms: house.bathrooms, taxvalue: house.taxvalue })
+    const prediction = await nn.predict({ LotLen: house.LotLen, LotArea: house.LotArea, HouseArea: house.HouseArea, GardenSize: house.GardenSize, Balcony: house.Balcony, bathrooms: house.bathrooms, taxvalue: house.taxvalue })
     const result = prediction[0].retailvalue
     const fmt = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' })
     document.getElementById('result').innerHTML = fmt.format(result)
