@@ -1,0 +1,66 @@
+ 
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&display=swap');
+ 
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient( hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+ 
+    /* background-color: #bbd5dc; */
+    overflow-x: hidden;
+    /* centered column with flex */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.schaar.active {
+    background: hsl(39, 89%, 49%) !important;
+          border-bottom: 6px solid #bb6400 !important;
+      box-shadow:
+0 0 30px 2px #ffffff31,  /* inner white */
+0 0 70px 7px #ec9e0e4f !important; /* outer cyan */
+;
+}
+
+.papier.active { 
+    background: hsl(230, 89%, 62%) !important;
+    border-bottom: 6px solid #243dbc !important;
+      box-shadow:
+0 0 30px 2px #ffffff31,  /* inner white */
+0 0 70px 7px #0ed2ec4f !important; /* outer cyan */
+;
+}
+
+.steen.active {
+    background: hsl(349, 71%, 52%)  !important;
+    border-bottom: 6px solid #962929 !important;
+    box-shadow:
+    0 0 30px 2px #ffffff31,   
+    0 0 70px 7px #dc2e4e7e   !important; 
+    
+}
+#array {
+    background-color: rgb(36, 32, 65);
+    color: white;
+    font-family: monospace;
+    min-height: 20px;
+    width: 720px;
+    word-wrap: break-word;
+}
+
+video {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    display: none;
+    width: auto;
+    height: auto;
+}
+
+#body {
+    display: flex; flex-direction: row;justify-content: space-between; 
+}
