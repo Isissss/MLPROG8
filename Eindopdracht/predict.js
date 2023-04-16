@@ -47,7 +47,7 @@ async function predict(record) {
     document.getElementById('result').innerHTML = 'Loading...'
 
     if (results[0].label === '0') {
-        document.getElementById('result').innerHTML = `The model predicts that the patient does not have a higher chance ${results[0].confidence < 0.75 ? `( ${parseFloat(results[0].confidence).toFixed(2) * 100} %)` : ''}) to die from heart failure <span id="disclaimer">*Disclaimer: This is not a medical diagnosis</span>`
+        document.getElementById('result').innerHTML = `The model predicts that the patient does not have a higher chance ${results[0].confidence < 0.75 ? `( ${parseFloat(results[0].confidence).toFixed(2) * 100} %)` : '(Confidence higher than 75%)'}) to die from heart failure <span id="disclaimer">*Disclaimer: This is not a medical diagnosis</span>`
     } else {
         document.getElementById('result').innerHTML = `The model predicts that the patient has a <strong>higher chance (${parseFloat(results[0].confidence).toFixed(2) * 100}%) </strong> to die from heart failure <span id="disclaimer">*Disclaimer: This is not a medical diagnosis</span>`
     }
