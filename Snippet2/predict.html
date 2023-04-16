@@ -9,8 +9,8 @@
     <script defer src="predict.js" type="module"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-</head>
 
 <body>
     <a href="./predict.html">Predict</a>
@@ -21,71 +21,89 @@
         <span style="text-align:center;"> </span>
 
         <form id="predict" style="display: flex; flex-direction: column; width: 100%;" action="">
-            <div class="inputs">
+            <!-- SerumSodium
+            : 
+            {min: 113, max: 148}
+            age
+            : 
+            {min: 40, max: 95}
+            anaemia
+            : 
+            {min: 0, max: 1}
+            creatininePhosphokinase
+            : 
+            {min: 23, max: 7861}
+            diabetes
+            : 
+            {min: 0, max: 1}
+            ejectionFraction
+            : 
+            {min: 14, max: 80}
+            highBloodPressure
+            : 
+            {min: 0, max: 1}
+            platelets
+            : 
+            {min: 25100, max: 850000}
+            serumCreatinin
+            : 
+            {min: 0.5, max: 9.4}
+            sex
+            : 
+            {min: 0, max: 1}
+            smoking
+            : 
+            {min: 0, max: 1}
+            time
+            : 
+            {min: 4, max: 285} -->
 
-                <!-- 
-                <div class="form-input">
-                    <label for="lotlen">Lot length (5 - 115)</label>
-                    <input type="number" name="lotlen" id="lotlen" min="5" max="115" required>
-                </div> -->
+            <label for="SerumSodium">SerumSodium</label>
+            <input type="number" id="SerumSodium" name="SerumSodium" min="113" max="148" required>
 
-                <!-- <div class="form-input">
-                    <label for="lotwidth">Lot width</label>
-                    <input type="number" name="lotwidth" id="lotwidth" min="1" required>
-                </div> -->
+            <label for="age">age</label>
+            <input type="number" id="age" name="age" min="40" max="95" required>
 
-                <!-- <div class="form-input">
-                    <label for="lotarea">Lot area (111 - 1198)</label>
-                    <input type="number" name="lotarea" id="lotarea" min="111" max="1198" required>
-                </div>
+            <label for="anaemia">anaemia</label>
+            <input type="number" id="anaemia" name="anaemia" min="0" max="1" required>
 
-                <div class="form-input">
-                    <label for="housearea">House area (80 - 250) </label>
-                    <input type="number" name="housearea" id="housearea" min="80" max="250" required>
-                </div>
+            <label for="creatininePhosphokinase">creatininePhosphokinase</label>
+            <input type="number" id="creatininePhosphokinase" name="creatininePhosphokinase" min="23" max="7861"
+                required>
 
-                <div class="form-input">
-                    <label for="gardensize">Garden size (13 - 1111) </label>
-                    <input type="number" name="gardensize" id="gardensize" min="13" max="1111" required>
-                </div>
+            <label for="diabetes">diabetes</label>
+            <label for="diabetes-yes">Yes</label>
+            <input type="radio" id="diabetes-yes" name="diabetes" value="0" required>
+            <label for="diabetes-no">No</label>
+            <input type="radio" id="diabetes-no" name="diabetes" value="1" required>
 
-                <div class="form-input">
-                    <label for="balcony">Balcony (0 - 2) </label>
-                    <input type="number" name="balcony" id="balcony" min="0" max="2" required>
-                </div> -->
+            <label for="ejectionFraction">ejectionFraction</label>
+            <input type="number" id="ejectionFraction" name="ejectionFraction" min="14" max="80" required>
 
-                <!-- <div class="form-input">
-                    <label for="xcoor">X coordinate</label>
-                    <input type="number" name="xcoor" id="xcoor" min="1" required>
-                </div>
+            <label for="highBloodPressure">Increased blood pressure</label>
+            <label for="highBloodPressure-yes">Yes</label>
+            <input type="radio" id="highBloodPressure-yes" name="highBloodPressure" value="0" required>
+            <label for="highBloodPressure-no">No</label>
+            <input type="radio" id="highBloodPressure-no" name="highBloodPressure" value="1" required>
 
-                <div class="form-input">
-                    <label for="ycoor">Y coordinate</label>
-                    <input type="number" name="ycoor" id="ycoor" min="1" required>
-                </div> -->
-                <!-- 
-                <div class="form-input">
-                    <label for="buildyear">Build year</label>
-                    <input type="number" name="buildyear" id="buildyear" min="1" required>
-                </div> -->
-                <!-- 
-                <div class="form-input">
-                    <label for="bathrooms">Bathrooms (1-2) </label>
-                    <input type="number" name="bathrooms" id="bathrooms" min="1" max="2" required>
-                </div>
+            <label for="platelets">platelets</label>
+            <input type="number" id="platelets" name="platelets" min="25100" max="850000" required>
 
-                <div class="form-input">
-                    <label for="taxvalue">Tax value (65,600 - 345,000)</label>
-                    <input type="number" name="taxvalue" id="taxvalue" min="65600" max="345000" required>
-                </div> -->
-                <input type"number" id="index" value="0">
-                <br>
-                <button type="submit" id="submit-btn">Predict</button>
-            </div>
-            <hr />
-            <div id="result-div">
-                Retailvalue prediction: <span id="result"></span>
-            </div>
+            <label for="serumCreatinin">serumCreatinin</label>
+            <input type="number" id="serumCreatinin" name="serumCreatinin" min="0.5" max="9.4" required>
+
+            <label for="sex"> Gender </label>
+            <label for="sex-yes">Male</label>
+            <input type="radio" id="sex-yes" name="sex" value="0" required>
+            <label for="sex-no">Female</label>
+            <input type="radio" id="sex-no" name="sex" value="1" required>
+            <label for="sex-na">NA</label>
+            <input type="radio" id="sex-na" name="sex" value="0.5" required>
+
+
+
+            <label for="ejectionFraction">ejectionFraction</label>
+
         </form>
 
 </body>

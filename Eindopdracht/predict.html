@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="predict.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+
+<body>
+    <a href="./predict.html">Predict</a>
+    <a href="./train.html">Train</a>
+    <div id="main">
+        <h1> Heart Failure Mortality Chance Checker <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="feather feather-activity">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg> </h1>
+        <!-- <hr /> -->
+        <div class="emphatised">
+            <p>
+                This is a machine learning model that predicts the chance of death from heart failure based on the data
+                in the form for people between 40-79. <br> <br>
+                <span id="disclaimer"> <strong>Disclaimer: This model has an accuracy of 78%. While it may
+                        be used as
+                        an indicator to improve early detection, a second opinion from a doctor is required. </strong>
+                </span>
+            </p>
+
+        </div>
+
+        <form id="predict" style="display: flex; flex-direction: column; width: 100%;" action="">
+
+            <span class="sub-title">Personal</span>
+            <div class="inputs">
+                <div class="input-group">
+                    <label for="sex">Gender</label>
+                    <select name="gender" id="sex">
+                        <option disabled default selected>Pick an option</option>
+                        <option value="0">Male</option>
+                        <option value="1">Female</option>
+                        <option value="0.5">N/A</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="smoking">Patient smokes</label>
+                    <select name="smoking" id="smoking">
+                        <option disabled default selected>Pick an option</option>
+                        <option value="0">Yes</option>
+                        <option value="1">No</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="diabetes">Patient has diabetes</label>
+                    <select name="diabetes" id="diabetes">
+                        <option disabled default selected>Pick an option</option>
+                        <option value="0">Yes</option>
+                        <option value="1">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="age">Patient Age (years)</label>
+                    <input type="number" id="age" name="age" min="40" max="95" required placeholder="Min: 40, Max: 95">
+                </div>
+            </div>
+
+            <span class="sub-title">Medical info</span>
+            <div class="inputs">
+
+                <div class="input-group">
+                    <label for="anaemia">Decrease of red blood cells or hemoglobin (anaemia)</label>
+                    <select name="anaemia" id="anaemia">
+                        <option disabled default selected>Pick an option</option>
+                        <option value="0">Yes</option>
+                        <option value="1">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="creatininePhosphokinase">Level of the CPK enzyme in the blood
+                        (mcg/L) </label>
+                    <input type="number" id="creatininePhosphokinase" name="creatininePhosphokinase" min="23"
+                        placeholder="Min: 23, max: 7861" max="7861" required>
+                </div>
+                <div class="input-group">
+                    <label for="ejectionFraction">Ejection Fraction (percentage)</label>
+                    <input type="number" id="ejectionFraction" name="ejectionFraction" min="14" max="80"
+                        placeholder="Min: 14%, Max: 80%" required>
+                </div>
+                <div class=" input-group">
+                    <label for="highBloodPressure">Increased blood pressure (hypertension)</label>
+                    <select name="highBloodPressure" id="highBloodPressure">
+                        <option disabled default selected>Pick an option</option>
+                        <option value="0">Yes</option>
+                        <option value="1">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="platelets">Platelets in the blood (kiloplatelets/mL)</label>
+                    <input type="number" id="platelets" name="platelets" min="25100" max="850000"
+                        placeholder="Min: 25100, max: 850000" required>
+                </div>
+                <div class="input-group">
+                    <label for="serumCreatinin">Level of serum creatinine in the blood (mg/dL)</label>
+                    <input type="number" id="serumCreatinin" name="serumCreatinin" min="0.5" max="9.4" step="0.1"
+                        placeholder="Min: 0,5, Max: 9,4" required>
+
+                </div>
+                <div class="input-group">
+                    <label for="SerumSodium">Level of serum sodium in the blood (mEq/L)</label>
+                    <input type="number" id="SerumSodium" name="SerumSodium" min="113" max="148"
+                        placeholder="Min: 133, Max: 148" required>
+                </div>
+            </div>
+
+            <input type="submit" id="submit-btn" value="Submit">
+        </form>
+        <div id="result" class="emphatised">
+        </div>
+        <footer>
+            The data is based on the <a href="https://www.kaggle.com/andrewmvd/heart-failure-clinical-data">Heart
+                Failure Prediction
+                Dataset</a> from Kaggle.
+        </footer>
+</body>
+
+</html>

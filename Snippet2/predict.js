@@ -6,54 +6,31 @@ const index = document.getElementById('index')
 let testData
 let genres
 
-function loadData() {
-    // Papa.parse("./data/spotify.csv", {
-    //     download: true,
-    //     header: true,
-    //     dynamicTyping: true,
-    //     complete: results => prepareData(results.data)
-    // })
-
-    Papa.parse("./data/top10s.csv", {
-        download: true,
-        header: true,
-        dynamicTyping: true,
-        complete: results => prepareData(results.data)
-    })
-
-
-
-}
-
-
-function prepareData(data) {
-
-    testData = data.slice(Math.floor(data.length * 0.8) + 1)
-    genres = [...new Set(data.map(house => house.topGenre))].map((genre, index) => ({ genre, index }))
-
-}
-
 async function submitHandler(e) {
     e.preventDefault()
-
-    const parsedIndex = parseInt(index.value)
-    let song = testData[parsedIndex]
-
-    predict(song)
-}
-
-async function predict(song) {
-    console.log(song.title)
-    if (song.bpm && song.nrgy && song.dnce && song.dB && song.live && song.val && song.dur && song.acous && song.spch && song.title && song.topGenre) {
-
-        const genreToIndex = genres.find(genre => genre.genre === song.topGenre).index
-        const result = await nn.classify({ bpm: song.bpm, nrgy: song.nrgy, dnce: song.dnce, dB: song.dB, live: song.live, val: song.val, acous: song.acous, spch: song.spch, genre: genreToIndex })
-        // filter 3 highest confidence
-        const highest = result.sort((a, b) => b.confidence - a.confidence).slice(0, 3)
-        console.log(highest)
-
+    // age,anaemia,creatininePhosphokinase,diabetes,ejectionFraction,highBloodPressure,platelets,serumCreatinin,SerumSodium,sex,smoking,time,DeathEvent
+    const record = {
+        age: parseInt(document.getElementById('age').value),
+        anaemia: parseInt(document.getElementById('anaemia').value),
+        creatininePhosphokinase: parseInt(document.getElementById('creatininePhosphokinase').value),
+        diabetes: parseInt(document.getElementById('diabetes').value),
+        ejectionFraction: parseInt(document.getElementById('ejectionFraction').value),
+        highBloodPressure: parseInt(document.getElementById('highBloodPressure').value),
+        platelets: parseInt(document.getElementById('platelets').value),
+        serumCreatinin: parseInt(document.getElementById('serumCreatinin').value),
+        SerumSodium: parseInt(document.getElementById('SerumSodium').value),
+        sex: parseInt
     }
+    console.log(record)
+    predict(record)
 }
+
+async function predict(record) {
+    const results = await nn.classify({ age: record.age, anaemia: record.anaemia, creatininePhosphokinase: record.creatininePhosphokinase, diabetes: record.diabetes, ejectionFraction: record.ejectionFraction, highBloodPressure: record.highBloodPressure, platelets: record.platelets, serumCreatinin: record.serumCreatinin, SerumSodium: record.SerumSodium, sex: record.sex, smoking: record.smoking, time: record.time })
+    console.log(results)
+
+}
+
 
 
 function modelLoaded() {

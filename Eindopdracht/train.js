@@ -1,42 +1,18 @@
-import { createChart, updateChart } from "./scatterplot.js"
 let trainingsData = []
 let testData
-let genres
 let validatieData
 document.getElementById("save").addEventListener("click", () => nn.save())
 document.getElementById("train").addEventListener("click", trainData)
 
 const options = {
     task: 'classification',
-    debug: true,
-    layers: [
-        {
-            type: 'dense',
-            units: 32,
-            activation: 'relu',
-        }, {
-            type: 'dense',
-            units: 32,
-            activation: 'relu',
-        },
-        {
-            type: 'dense',
-            activation: 'softmax',
-        },
-    ]
-
+    debug: true
 }
 
 const nn = ml5.neuralNetwork(options)
 
 
 function loadData() {
-    // Papa.parse("./data/spotify.csv", {
-    //     download: true,
-    //     header: true,
-    //     dynamicTyping: true,
-    //     complete: results => trainingsData.push(results.data)
-    // })
 
     Papa.parse("./data/heart_failure_clinical_records_dataset.csv", {
         download: true,
@@ -44,17 +20,6 @@ function loadData() {
         dynamicTyping: true,
         complete: results => prepareData(results.data)
     })
-
-
-    // Papa.parse("./data/top10s.csv", {
-    //     download: true,
-    //     header: true,
-    //     dynamicTyping: true,
-    //     complete: results => {
-    //         trainingsData.push(results.data)
-    //         prepareData(trainingsData.flat())
-    //     }
-    // })
 
 }
 
